@@ -20,7 +20,7 @@ namespace Microsoft.PowerShell.Archive
 
         private readonly System.IO.Compression.ZipArchive _zipArchive;
 
-        private readonly System.IO.Compression.CompressionLevel _compressionLevel;
+        private readonly CompressionLevel _compressionLevel;
 
         private const char ZipArchiveDirectoryPathTerminator = '/';
 
@@ -48,8 +48,8 @@ namespace Microsoft.PowerShell.Archive
 
             var entryName = addition.EntryName.Replace(System.IO.Path.DirectorySeparatorChar, System.IO.Path.AltDirectorySeparatorChar);
 
-            // If the archive has an entry with the same name as addition.EntryName, then get it, so it can be replaced if necessary
-            System.IO.Compression.ZipArchiveEntry? entryInArchive = null;
+      // If the archive has an entry with the same name as addition.EntryName, then get it, so it can be replaced if necessary
+      ZipArchiveEntry? entryInArchive = null;
             if (_mode != ArchiveMode.Create)
             {
                 // TODO: Add exception handling for _zipArchive.GetEntry
@@ -94,14 +94,14 @@ namespace Microsoft.PowerShell.Archive
             throw new NotImplementedException();
         }
 
-        private static System.IO.Compression.ZipArchiveMode ConvertToZipArchiveMode(ArchiveMode archiveMode)
+        private static ZipArchiveMode ConvertToZipArchiveMode(ArchiveMode archiveMode)
         {
             switch (archiveMode)
             {
-                case ArchiveMode.Create: return System.IO.Compression.ZipArchiveMode.Create;
-                case ArchiveMode.Update: return System.IO.Compression.ZipArchiveMode.Update;
-                case ArchiveMode.Extract: return System.IO.Compression.ZipArchiveMode.Read;
-                default: return System.IO.Compression.ZipArchiveMode.Update;
+                case ArchiveMode.Create: return ZipArchiveMode.Create;
+                case ArchiveMode.Update: return ZipArchiveMode.Update;
+                case ArchiveMode.Extract: return ZipArchiveMode.Read;
+                default: return ZipArchiveMode.Update;
             }
         }
 

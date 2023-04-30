@@ -77,7 +77,7 @@ namespace Microsoft.PowerShell.Archive
         /// <param name="path">A fully qualifed path referring to a directory</param>
         /// <param name="additions">Where the ArchiveAddtion object for each child item of the directory will be added</param>
         /// <param name="shouldPreservePathStructure">See above</param>
-        private void AddDescendentEntries(System.IO.DirectoryInfo directoryInfo, List<ArchiveAddition> additions, bool shouldPreservePathStructure)
+        private void AddDescendentEntries(DirectoryInfo directoryInfo, List<ArchiveAddition> additions, bool shouldPreservePathStructure)
         {
             try
             {
@@ -135,7 +135,7 @@ namespace Microsoft.PowerShell.Archive
             
             if (fileSystemInfo.Attributes.HasFlag(FileAttributes.Directory) && !entryName.EndsWith(Path.DirectorySeparatorChar))
             {
-                entryName += System.IO.Path.DirectorySeparatorChar;
+                entryName += Path.DirectorySeparatorChar;
             }
 
 
@@ -177,7 +177,7 @@ namespace Microsoft.PowerShell.Archive
         /// </summary>
         /// <param name="directoryInfo"></param>
         /// <returns></returns>
-        private static string GetPrefixForPath(System.IO.DirectoryInfo directoryInfo)
+        private static string GetPrefixForPath(DirectoryInfo directoryInfo)
         {
             // Get the parent directory of the path
             if (directoryInfo.Parent is null)
@@ -185,9 +185,9 @@ namespace Microsoft.PowerShell.Archive
                 return string.Empty;
             }
             var prefix = directoryInfo.Parent.FullName;
-            if (!prefix.EndsWith(System.IO.Path.DirectorySeparatorChar))
+            if (!prefix.EndsWith(Path.DirectorySeparatorChar))
             {
-                prefix += System.IO.Path.DirectorySeparatorChar;
+                prefix += Path.DirectorySeparatorChar;
             }
             return prefix;
         }
@@ -231,7 +231,7 @@ namespace Microsoft.PowerShell.Archive
                     fullyQualifiedPaths = resolvedPaths;
                 }
             } 
-            catch (System.Management.Automation.ProviderNotFoundException providerNotFoundException)
+            catch (ProviderNotFoundException providerNotFoundException)
             {
                 exception = providerNotFoundException;
             } 
@@ -239,20 +239,20 @@ namespace Microsoft.PowerShell.Archive
             {
                 exception = driveNotFoundException;
             } 
-            catch (System.Management.Automation.ProviderInvocationException providerInvocationException)
+            catch (ProviderInvocationException providerInvocationException)
             {
                 exception = providerInvocationException;
             } 
-            catch (System.Management.Automation.PSNotSupportedException notSupportedException)
+            catch (PSNotSupportedException notSupportedException)
             {
                 exception = notSupportedException;
             } 
-            catch (System.Management.Automation.PSInvalidOperationException invalidOperationException)
+            catch (PSInvalidOperationException invalidOperationException)
             {
                 exception = invalidOperationException;
             }
             // If a path can't be found, write an error
-            catch (System.Management.Automation.ItemNotFoundException)
+            catch (ItemNotFoundException)
             {
                 nonexistentPaths.Add(path);
             }
@@ -291,7 +291,7 @@ namespace Microsoft.PowerShell.Archive
                     fullyQualifiedPath = resolvedPath;
                 }
             } 
-            catch (System.Management.Automation.ProviderNotFoundException providerNotFoundException)
+            catch (ProviderNotFoundException providerNotFoundException)
             {
                 exception = providerNotFoundException;
             } 
@@ -299,15 +299,15 @@ namespace Microsoft.PowerShell.Archive
             {
                 exception = driveNotFoundException;
             } 
-            catch (System.Management.Automation.ProviderInvocationException providerInvocationException)
+            catch (ProviderInvocationException providerInvocationException)
             {
                 exception = providerInvocationException;
             } 
-            catch (System.Management.Automation.PSNotSupportedException notSupportedException)
+            catch (PSNotSupportedException notSupportedException)
             {
                 exception = notSupportedException;
             } 
-            catch (System.Management.Automation.PSInvalidOperationException invalidOperationException)
+            catch (PSInvalidOperationException invalidOperationException)
             {
                 exception = invalidOperationException;
             }
@@ -350,7 +350,7 @@ namespace Microsoft.PowerShell.Archive
                     fullyQualifiedPath = resolvedPath;
                 }
             } 
-            catch (System.Management.Automation.ProviderNotFoundException providerNotFoundException)
+            catch (ProviderNotFoundException providerNotFoundException)
             {
                 exception = providerNotFoundException;
             } 
@@ -358,15 +358,15 @@ namespace Microsoft.PowerShell.Archive
             {
                 exception = driveNotFoundException;
             } 
-            catch (System.Management.Automation.ProviderInvocationException providerInvocationException)
+            catch (ProviderInvocationException providerInvocationException)
             {
                 exception = providerInvocationException;
             } 
-            catch (System.Management.Automation.PSNotSupportedException notSupportedException)
+            catch (PSNotSupportedException notSupportedException)
             {
                 exception = notSupportedException;
             } 
-            catch (System.Management.Automation.PSInvalidOperationException invalidOperationException)
+            catch (PSInvalidOperationException invalidOperationException)
             {
                 exception = invalidOperationException;
             }

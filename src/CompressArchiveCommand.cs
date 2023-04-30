@@ -331,7 +331,7 @@ namespace Microsoft.PowerShell.Archive
                 ThrowTerminatingError(errorRecord);
             }
             // Throw a terminating error if an UnauthorizedAccessException occurs
-            catch (System.UnauthorizedAccessException unauthorizedAccessException)
+            catch (UnauthorizedAccessException unauthorizedAccessException)
             {
                 var errorRecord = new ErrorRecord(unauthorizedAccessException, errorId: nameof(ErrorCode.InsufficientPermissionsToAccessPath),
                     errorCategory: ErrorCategory.PermissionDenied, targetObject: DestinationPath);

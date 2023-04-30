@@ -10,11 +10,11 @@ namespace Microsoft.PowerShell.Archive
     {
         internal static IArchive GetArchive(ArchiveFormat format, string archivePath, ArchiveMode archiveMode, System.IO.Compression.CompressionLevel compressionLevel)
         {
-            System.IO.FileStream archiveFileStream = archiveMode switch
+      FileStream archiveFileStream = archiveMode switch
             {
-                ArchiveMode.Create => new FileStream(archivePath, mode: System.IO.FileMode.CreateNew, access: System.IO.FileAccess.Write, share: System.IO.FileShare.None),
-                ArchiveMode.Update => new FileStream(archivePath, mode: System.IO.FileMode.Open, access: System.IO.FileAccess.ReadWrite, share: System.IO.FileShare.None),
-                ArchiveMode.Extract => new FileStream(archivePath, mode: System.IO.FileMode.Open, access: System.IO.FileAccess.Read, share: System.IO.FileShare.Read),
+                ArchiveMode.Create => new FileStream(archivePath, mode: FileMode.CreateNew, access: FileAccess.Write, share: FileShare.None),
+                ArchiveMode.Update => new FileStream(archivePath, mode: FileMode.Open, access: FileAccess.ReadWrite, share: FileShare.None),
+                ArchiveMode.Extract => new FileStream(archivePath, mode: FileMode.Open, access: FileAccess.Read, share: FileShare.Read),
                 _ => throw new ArgumentOutOfRangeException(nameof(archiveMode))
             };
 
